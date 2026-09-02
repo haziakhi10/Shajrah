@@ -26,9 +26,18 @@
     font-family: Georgia, 'Times New Roman', serif;
     text-align: center;
     background-color: var(--bg);
+
     background-image:
-      radial-gradient(circle at 50% -5%, rgba(218,155,72,0.20), transparent 52%),
-      radial-gradient(circle at 15% 85%, rgba(143,92,39,0.12), transparent 42%),
+      radial-gradient(
+        circle at 50% -5%,
+        rgba(218,155,72,0.20),
+        transparent 52%
+      ),
+      radial-gradient(
+        circle at 15% 85%,
+        rgba(143,92,39,0.12),
+        transparent 42%
+      ),
       repeating-linear-gradient(
         45deg,
         rgba(212,175,55,0.035) 0px,
@@ -43,6 +52,7 @@
         transparent 1px,
         transparent 46px
       );
+
     background-attachment: fixed;
   }
 
@@ -50,6 +60,7 @@
     padding: 40px 20px 20px 20px;
   }
 
+  /* Main title */
   h1 {
     color: var(--gold-light);
     font-size: 1.45rem;
@@ -57,9 +68,15 @@
     letter-spacing: 1px;
   }
 
+  /* Fancy subheading */
   .subtitle {
     color: #d8c79f;
-    font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+    font-family:
+      "Palatino Linotype",
+      "Book Antiqua",
+      Palatino,
+      Georgia,
+      serif;
     font-size: 1.15rem;
     font-style: normal;
     font-weight: 600;
@@ -99,10 +116,19 @@
   }
 
   .card-prophet {
-    background: linear-gradient(145deg, #1a1405, #2b2108);
+    background: linear-gradient(
+      145deg,
+      #1a1405,
+      #2b2108
+    );
+
     border: 2px solid var(--gold);
+
     padding: 28px 20px;
-    box-shadow: 0 0 18px rgba(212,175,55,0.25);
+
+    box-shadow:
+      0 0 18px rgba(212,175,55,0.25);
+
     cursor: pointer;
   }
 
@@ -118,6 +144,7 @@
       var(--green),
       var(--green-light)
     );
+
     border: 1px solid #3a5c47;
   }
 
@@ -128,10 +155,18 @@
   }
 
   .card-final {
-    background: linear-gradient(145deg, #1a1405, #2b2108);
+    background: linear-gradient(
+      145deg,
+      #1a1405,
+      #2b2108
+    );
+
     border: 2px solid var(--gold);
+
     padding: 24px 20px;
-    box-shadow: 0 0 14px rgba(212,175,55,0.2);
+
+    box-shadow:
+      0 0 14px rgba(212,175,55,0.2);
   }
 
   .card-final .name {
@@ -141,18 +176,28 @@
     line-height: 1.4;
   }
 
-  /* Modal */
+  /* ============================================================
+     MODAL
+  ============================================================ */
+
   .overlay {
     display: none;
+
     position: fixed;
+
     top: 0;
     left: 0;
+
     width: 100%;
     height: 100%;
+
     background: rgba(0,0,0,0.7);
+
     z-index: 100;
+
     justify-content: center;
     align-items: center;
+
     padding: 20px;
   }
 
@@ -162,162 +207,502 @@
 
   .modal {
     background: #10190f;
+
     border: 1px solid var(--gold);
+
     border-radius: 14px;
+
     max-width: 500px;
     width: 100%;
+
     max-height: 85vh;
+
     overflow-y: auto;
+
     padding: 30px 24px;
+
     position: relative;
+
     text-align: left;
   }
 
   .close-btn {
     position: absolute;
+
     top: 14px;
     right: 16px;
+
     background: none;
     border: none;
+
     color: var(--gold-light);
+
     font-size: 1.6rem;
+
     cursor: pointer;
+
     line-height: 1;
+
     padding: 6px 10px;
   }
 
   .modal-number {
     color: var(--gold);
+
     font-size: 0.95rem;
+
     font-weight: bold;
+
     margin-bottom: 6px;
   }
 
   .modal-name {
     color: var(--gold-light);
+
     font-size: 1.3rem;
+
     font-weight: bold;
+
     margin-bottom: 20px;
+
     line-height: 1.4;
   }
 
   .modal-dates {
     font-size: 1rem;
+
     margin-bottom: 6px;
+
     color: var(--text);
   }
 
   .modal-heading {
     color: var(--gold);
+
     font-size: 1.1rem;
+
     margin-top: 20px;
+
     margin-bottom: 8px;
+
     border-top: 1px solid #2a3d31;
+
     padding-top: 16px;
   }
 
   .modal-bio {
     font-size: 1rem;
+
     line-height: 1.6;
+
     color: var(--text);
   }
+
+  /* Biography paragraphs */
+  .modal-bio p {
+    margin: 0 0 16px 0;
+  }
+
+  .modal-bio p:last-child {
+    margin-bottom: 0;
+  }
+
 </style>
 </head>
 
 <body>
 
 <header>
+
   <h1>Blessed Chain of Authority</h1>
+
   <p class="subtitle">
     Silsilah Aaliyah Naqshbandia Mujaddidia Fazaliah Murtaziah Asifia
   </p>
+
 </header>
+
 
 <div class="chain" id="chain"></div>
 
+
 <div class="overlay" id="overlay">
+
   <div class="modal">
 
-    <button class="close-btn" id="closeBtn">&times;</button>
+    <button class="close-btn" id="closeBtn">
+      &times;
+    </button>
 
-    <div class="modal-number" id="modalNumber"></div>
+    <div
+      class="modal-number"
+      id="modalNumber">
+    </div>
 
-    <div class="modal-name" id="modalName"></div>
+    <div
+      class="modal-name"
+      id="modalName">
+    </div>
 
-    <div class="modal-dates" id="modalBorn"></div>
+    <div
+      class="modal-dates"
+      id="modalBorn">
+    </div>
 
-    <div class="modal-dates" id="modalPassed"></div>
+    <div
+      class="modal-dates"
+      id="modalPassed">
+    </div>
 
-    <div class="modal-heading">Biography</div>
+    <div class="modal-heading">
+      Biography
+    </div>
 
-    <div class="modal-bio" id="modalBio"></div>
+    <div
+      class="modal-bio"
+      id="modalBio">
+    </div>
 
   </div>
+
 </div>
+
 
 <script>
 
   /* ============================================================
-     EDIT SHAYKH INFORMATION BELOW.
+     SHAYKH INFORMATION
   ============================================================ */
 
   const shaykhs = [
-    { number: 1, name: "Hadhrat Abu Bakr Siddique RadhiAllahu Anhu", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 2, name: "Hadhrat Salmaan Farsi RadhiAllahu Anhu", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 3, name: "Hadhrat Qasim Bin Muhammad Bin Abu Bakr RadhiAllahu Anhu", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 4, name: "Hadhrat Imam Ja'far Sadiq Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 5, name: "Hadhrat Bayazeed Bistaami Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 6, name: "Hadhrat Abul Hassan Khurqaani Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 7, name: "Hadhrat Abul Qasim Gurgaani Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 8, name: "Hadhrat Abu Ali Faarmadi Toosi Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 9, name: "Hadhrat Yusuf Hamdani Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 10, name: "Hadhrat Abdul Khaliq Ghajdwani Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 11, name: "Hadhrat Khwaja Muhammad Aarif Reogari Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 12, name: "Hadhrat Mahmood Faghnawi Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 13, name: "Hadhrat Khwaja Azeezan Ali Ramateeni Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 14, name: "Hadhrat Muhammad Baba Samaasi Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 15, name: "Hadhrat Syed Ameer Kalaal Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 16, name: "Hadhrat Syed Baha'uddin Naqshband Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 17, name: "Hadhrat Ala'uddin Attaar Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 18, name: "Hadhrat Ya'qoob Charkhi Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 19, name: "Hadhrat Abaydullah Ahraar Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 20, name: "Hadhrat Muhammad Zaahid Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 21, name: "Hadhrat Darwesh Muhammad Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 22, name: "Hadhrat Muhammad Waaqif Akangi Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 23, name: "Hadhrat Baqi Billaah Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 24, name: "Hadhrat Sheikh Ahmad Farooqui Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 25, name: "Hadhrat Muhammad Ma'soom Farooqui Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 26, name: "Hadhrat Sayfuddeen Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 27, name: "Hadhrat Muhsin Dehlawi Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 28, name: "Hadhrat Noor Muhammad Badyooni Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 29, name: "Hadhrat Mirza Mazhar Jaane Jaanan Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 30, name: "Hadhrat Abdullah Shah Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 31, name: "Hadhrat Abu Sa'eed Ahmad Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 32, name: "Hadhrat Ahmad Sa'eed Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 33, name: "Hadhrat Daust Muhammad Qandhaari Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 34, name: "Hadhrat Muhammad Usman Damaani Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 35, name: "Hadhrat Siraajuddeen Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 36, name: "Hadhrat Fazal Ali Shah Qureshi Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 37, name: "Hadhrat Sheikh Ali Murtaza Rahmatullah Alayh", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" },
-    { number: 38, name: "Rahbarey Tareeqat, Muhiyyusunnah, Hadhrat Sheikh Asif Hussain Farooqui Naqshbandi Mujaddidi Daamat Barakaatuhum", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" }
+
+    {
+      number: 1,
+      name: "Hadhrat Abu Bakr Siddique RadhiAllahu Anhu",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 2,
+      name: "Hadhrat Salmaan Farsi RadhiAllahu Anhu",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 3,
+      name: "Hadhrat Qasim Bin Muhammad Bin Abu Bakr RadhiAllahu Anhu",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 4,
+      name: "Hadhrat Imam Ja'far Sadiq Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 5,
+      name: "Hadhrat Bayazeed Bistaami Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 6,
+      name: "Hadhrat Abul Hassan Khurqaani Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 7,
+      name: "Hadhrat Abul Qasim Gurgaani Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 8,
+      name: "Hadhrat Abu Ali Faarmadi Toosi Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 9,
+      name: "Hadhrat Yusuf Hamdani Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 10,
+      name: "Hadhrat Abdul Khaliq Ghajdwani Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 11,
+      name: "Hadhrat Khwaja Muhammad Aarif Reogari Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 12,
+      name: "Hadhrat Mahmood Faghnawi Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 13,
+      name: "Hadhrat Khwaja Azeezan Ali Ramateeni Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 14,
+      name: "Hadhrat Muhammad Baba Samaasi Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 15,
+      name: "Hadhrat Syed Ameer Kalaal Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 16,
+      name: "Hadhrat Syed Baha'uddin Naqshband Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 17,
+      name: "Hadhrat Ala'uddin Attaar Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 18,
+      name: "Hadhrat Ya'qoob Charkhi Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 19,
+      name: "Hadhrat Abaydullah Ahraar Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 20,
+      name: "Hadhrat Muhammad Zaahid Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 21,
+      name: "Hadhrat Darwesh Muhammad Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 22,
+      name: "Hadhrat Muhammad Waaqif Akangi Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 23,
+      name: "Hadhrat Baqi Billaah Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 24,
+      name: "Hadhrat Sheikh Ahmad Farooqui Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 25,
+      name: "Hadhrat Muhammad Ma'soom Farooqui Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 26,
+      name: "Hadhrat Sayfuddeen Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 27,
+      name: "Hadhrat Muhsin Dehlawi Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 28,
+      name: "Hadhrat Noor Muhammad Badyooni Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 29,
+      name: "Hadhrat Mirza Mazhar Jaane Jaanan Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 30,
+      name: "Hadhrat Abdullah Shah Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 31,
+      name: "Hadhrat Abu Sa'eed Ahmad Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 32,
+      name: "Hadhrat Ahmad Sa'eed Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 33,
+      name: "Hadhrat Daust Muhammad Qandhaari Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 34,
+      name: "Hadhrat Muhammad Usman Damaani Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 35,
+      name: "Hadhrat Siraajuddeen Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 36,
+      name: "Hadhrat Fazal Ali Shah Qureshi Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 37,
+      name: "Hadhrat Sheikh Ali Murtaza Rahmatullah Alayh",
+      born: "ToBeAdded",
+      passedAway: "ToBeAdded",
+      biography: "ToBeAdded"
+    },
+
+    {
+      number: 38,
+      name: "Rahbarey Tareeqat, Muhiyyusunnah, Hadhrat Sheikh Asif Hussain Farooqui Naqshbandi Mujaddidi Daamat Barakaatuhum",
+      born: "ToBeAdded",
+      passedAway: "Alhamdulillah Alive",
+      biography: "ToBeAdded"
+    }
+
   ];
 
-  const chain = document.getElementById('chain');
 
   /* ============================================================
-     PROPHET INFORMATION
+     PROPHET ﷺ INFORMATION
   ============================================================ */
 
   const prophet = {
+
     number: null,
 
-    name: "Hadhrat Sarwar-e-Aalam Muhammad RasoolAllah ﷺ",
+    name:
+      "Hadhrat Sarwar-e-Aalam Muhammad RasoolAllah ﷺ",
 
-    born: "Monday 12th Rabi' al-Awwal 571 AD",
+    born:
+      "Monday 12th Rabi' al-Awwal 571 AD",
 
-    passedAway: null,
+    passedAway:
+      null,
 
-    biography: `The blessed birth of Allah’s Messenger ﷺ took place on Monday, 12th Rabi-ul-Awwal (according to some traditions, 9th Rabi-ul-Awwal), in 571 AD, the year of the Elephant. He was born in Makkah to Hadhrat Abdullah and Hadhrat Aminah, and his birth marked the arrival of the beloved Messenger of Allah Ta’ala and the leader of both worlds.
+    biography: `
+
+The blessed birth of Allah’s Messenger ﷺ took place on Monday, 12th Rabi-ul-Awwal (according to some traditions, 9th Rabi-ul-Awwal), in 571 AD, the year of the Elephant. He was born in Makkah to Hadhrat Abdullah and Hadhrat Aminah, and his birth marked the arrival of the beloved Messenger of Allah Ta’ala and the leader of both worlds.
 
 For the first few days, Allah’s Messenger ﷺ was fed by his blessed mother, after which he was nursed by Thuwaybah and then by Haleemah Sa’diyah RadhiAllahu Anha. It was the custom of the noble families of Quraysh to send their children to the countryside for a short period, and Haleemah Sa’diyah RadhiAllahu Anha was honoured with caring for the young Muhammad ﷺ. Her household was greatly blessed after his arrival.
 
@@ -355,49 +740,79 @@ Eventually, on Monday, 12th Rabi-ul-Awwal, Allah’s Messenger ﷺ passed away f
 
 The passing of Allah’s Messenger ﷺ was the greatest loss suffered by the Ummah. His mission, however, had been completed, the Deen had been conveyed, and his Companions RadhiAllahu Anhum carried his message forward and spread Islam throughout the world.
 
-Inna lillahi wa inna ilayhi raaji’oon.`
+Inna lillahi wa inna ilayhi raaji’oon.
+
+`
+
   };
 
+
   /* ============================================================
-     PROPHET CARD
+     CREATE CHAIN
   ============================================================ */
 
-  const prophetCard = document.createElement('div');
+  const chain =
+    document.getElementById('chain');
 
-  prophetCard.className = 'card card-prophet';
+
+  /* Prophet card */
+
+  const prophetCard =
+    document.createElement('div');
+
+  prophetCard.className =
+    'card card-prophet';
 
   prophetCard.innerHTML =
-    '<div class="name">' + prophet.name + '</div>';
+    '<div class="name">' +
+    prophet.name +
+    '</div>';
 
-  prophetCard.addEventListener('click', () => openModal(prophet));
+  prophetCard.addEventListener(
+    'click',
+    () => openModal(prophet)
+  );
 
   chain.appendChild(prophetCard);
 
 
-  /* ============================================================
-     SHAYKH CARDS
-  ============================================================ */
+  /* Shaykh cards */
 
   shaykhs.forEach((s) => {
 
-    const connector = document.createElement('div');
+    const connector =
+      document.createElement('div');
 
-    connector.className = 'connector';
+    connector.className =
+      'connector';
 
     chain.appendChild(connector);
 
 
-    const card = document.createElement('div');
+    const card =
+      document.createElement('div');
 
-    const isLast = s.number === 38;
+    const isLast =
+      s.number === 38;
 
     card.className =
-      'card ' + (isLast ? 'card-final' : 'card-shaykh');
+      'card ' +
+      (isLast
+        ? 'card-final'
+        : 'card-shaykh');
+
 
     card.innerHTML =
-      '<div class="name">' + s.name + '</div>';
+      '<div class="name">' +
+      s.name +
+      '</div>';
 
-    card.addEventListener('click', () => openModal(s));
+
+    card.addEventListener(
+      'click',
+      () => openModal(s)
+    );
+
 
     chain.appendChild(card);
 
@@ -405,10 +820,11 @@ Inna lillahi wa inna ilayhi raaji’oon.`
 
 
   /* ============================================================
-     MODAL LOGIC
+     MODAL ELEMENTS
   ============================================================ */
 
-  const overlay = document.getElementById('overlay');
+  const overlay =
+    document.getElementById('overlay');
 
   const modalNumber =
     document.getElementById('modalNumber');
@@ -429,69 +845,158 @@ Inna lillahi wa inna ilayhi raaji’oon.`
     document.getElementById('closeBtn');
 
 
+  /* ============================================================
+     OPEN MODAL
+  ============================================================ */
+
   function openModal(s) {
 
-    if (s.number === null || s.number === undefined) {
+    /* Number */
+
+    if (
+      s.number === null ||
+      s.number === undefined
+    ) {
 
       modalNumber.textContent = '';
 
-      modalNumber.style.display = 'none';
+      modalNumber.style.display =
+        'none';
 
     } else {
 
       modalNumber.textContent =
         'Shaykh #' + s.number;
 
-      modalNumber.style.display = 'block';
+      modalNumber.style.display =
+        'block';
     }
 
 
-    modalName.textContent = s.name;
+    /* Name */
+
+    modalName.textContent =
+      s.name;
 
 
-    /* Blessed Birth */
+    /* ========================================================
+       BIRTH LABEL
 
-    if (s.born) {
+       First button:
+       Blessed Birth:
 
-      modalBorn.textContent =
-        'Blessed Birth: ' + s.born;
+       All Shaykhs:
+       Born:
+    ======================================================== */
 
-      modalBorn.style.display = 'block';
+    if (s.number === null) {
+
+      if (s.born) {
+
+        modalBorn.textContent =
+          'Blessed Birth: ' + s.born;
+
+        modalBorn.style.display =
+          'block';
+
+      } else {
+
+        modalBorn.style.display =
+          'none';
+
+      }
 
     } else {
 
-      modalBorn.style.display = 'none';
+      if (s.born) {
+
+        modalBorn.textContent =
+          'Born: ' + s.born;
+
+        modalBorn.style.display =
+          'block';
+
+      } else {
+
+        modalBorn.style.display =
+          'none';
+
+      }
 
     }
 
 
-    /* Passed Away */
+    /* ========================================================
+       PASSED AWAY / ALIVE
 
-    if (s.passedAway) {
+       Last button:
+       Alhamdulillah Alive
+
+       Others:
+       Passed Away:
+    ======================================================== */
+
+    if (s.number === 38) {
 
       modalPassed.textContent =
-        'Passed Away: ' + s.passedAway;
+        'Alhamdulillah Alive';
 
-      modalPassed.style.display = 'block';
+      modalPassed.style.display =
+        'block';
+
+    } else if (s.passedAway) {
+
+      modalPassed.textContent =
+        'Passed Away: ' +
+        s.passedAway;
+
+      modalPassed.style.display =
+        'block';
 
     } else {
 
-      modalPassed.textContent = '';
+      modalPassed.textContent =
+        '';
 
-      modalPassed.style.display = 'none';
+      modalPassed.style.display =
+        'none';
 
     }
 
 
-    modalBio.textContent = s.biography;
+    /* ========================================================
+       BIOGRAPHY
+
+       Every blank line becomes a new paragraph.
+    ======================================================== */
+
+    modalBio.innerHTML =
+      s.biography
+        .trim()
+        .split(/\n\s*\n/)
+        .map(
+          paragraph =>
+            '<p>' +
+            paragraph.trim() +
+            '</p>'
+        )
+        .join('');
+
 
     overlay.classList.add('active');
+
   }
 
 
+  /* ============================================================
+     CLOSE MODAL
+  ============================================================ */
+
   function closeModal() {
 
-    overlay.classList.remove('active');
+    overlay.classList.remove(
+      'active'
+    );
 
   }
 
@@ -506,8 +1011,12 @@ Inna lillahi wa inna ilayhi raaji’oon.`
     'click',
     (e) => {
 
-      if (e.target === overlay) {
+      if (
+        e.target === overlay
+      ) {
+
         closeModal();
+
       }
 
     }
