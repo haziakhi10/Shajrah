@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blessed Chain of Authority</title>
+
 <style>
   :root {
     --bg: #17120c;
@@ -14,7 +15,9 @@
     --text: #eae6da;
   }
 
-  * { box-sizing: border-box; }
+  * {
+    box-sizing: border-box;
+  }
 
   body {
     margin: 0;
@@ -26,8 +29,20 @@
     background-image:
       radial-gradient(circle at 50% -5%, rgba(218,155,72,0.20), transparent 52%),
       radial-gradient(circle at 15% 85%, rgba(143,92,39,0.12), transparent 42%),
-      repeating-linear-gradient(45deg, rgba(212,175,55,0.035) 0px, rgba(212,175,55,0.035) 1px, transparent 1px, transparent 46px),
-      repeating-linear-gradient(-45deg, rgba(212,175,55,0.028) 0px, rgba(212,175,55,0.028) 1px, transparent 1px, transparent 46px);
+      repeating-linear-gradient(
+        45deg,
+        rgba(212,175,55,0.035) 0px,
+        rgba(212,175,55,0.035) 1px,
+        transparent 1px,
+        transparent 46px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        rgba(212,175,55,0.028) 0px,
+        rgba(212,175,55,0.028) 1px,
+        transparent 1px,
+        transparent 46px
+      );
     background-attachment: fixed;
   }
 
@@ -37,18 +52,18 @@
 
   h1 {
     color: var(--gold-light);
-    font-size: 1.8rem;
-    margin: 0 0 8px 0;
+    font-size: 1.45rem;
+    margin: 0 0 10px 0;
     letter-spacing: 1px;
   }
 
   .subtitle {
     color: #d8c79f;
-    font-size: 1.1rem;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+    font-size: 1.15rem;
     font-style: normal;
-    font-weight: 500;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
     margin: 0;
   }
 
@@ -62,7 +77,11 @@
   .connector {
     width: 3px;
     height: 30px;
-    background: linear-gradient(to bottom, var(--gold), var(--green-light));
+    background: linear-gradient(
+      to bottom,
+      var(--gold),
+      var(--green-light)
+    );
   }
 
   .card {
@@ -94,7 +113,11 @@
   }
 
   .card-shaykh {
-    background: linear-gradient(145deg, var(--green), var(--green-light));
+    background: linear-gradient(
+      145deg,
+      var(--green),
+      var(--green-light)
+    );
     border: 1px solid #3a5c47;
   }
 
@@ -122,8 +145,10 @@
   .overlay {
     display: none;
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(0,0,0,0.7);
     z-index: 100;
     justify-content: center;
@@ -203,28 +228,37 @@
 
 <header>
   <h1>Blessed Chain of Authority</h1>
-  <p class="subtitle">Silsilah Aaliyah Naqshbandia Mujaddidia Fazaliah Murtaziah Asifia</p>
+  <p class="subtitle">
+    Silsilah Aaliyah Naqshbandia Mujaddidia Fazaliah Murtaziah Asifia
+  </p>
 </header>
 
 <div class="chain" id="chain"></div>
 
 <div class="overlay" id="overlay">
   <div class="modal">
+
     <button class="close-btn" id="closeBtn">&times;</button>
+
     <div class="modal-number" id="modalNumber"></div>
+
     <div class="modal-name" id="modalName"></div>
+
     <div class="modal-dates" id="modalBorn"></div>
+
     <div class="modal-dates" id="modalPassed"></div>
+
     <div class="modal-heading">Biography</div>
+
     <div class="modal-bio" id="modalBio"></div>
+
   </div>
 </div>
 
 <script>
+
   /* ============================================================
      EDIT SHAYKH INFORMATION BELOW.
-     Each entry: number, name, born, passedAway, biography.
-     Simply replace "ToBeAdded" with the correct information.
   ============================================================ */
 
   const shaykhs = [
@@ -268,77 +302,217 @@
     { number: 38, name: "Rahbarey Tareeqat, Muhiyyusunnah, Hadhrat Sheikh Asif Hussain Farooqui Naqshbandi Mujaddidi Daamat Barakaatuhum", born: "ToBeAdded", passedAway: "ToBeAdded", biography: "ToBeAdded" }
   ];
 
-  /* ============================================================
-     No need to edit below this line.
-  ============================================================ */
-
   const chain = document.getElementById('chain');
 
-  // The Prophet's info, used when the top card is clicked (no number)
+  /* ============================================================
+     PROPHET INFORMATION
+  ============================================================ */
+
   const prophet = {
     number: null,
-    name: "Hadhrat Sarwar-e-Aalam Muhammad RasoolAllah \u0635\u0644\u0649 \u0627\u0644\u0644\u0647 \u0639\u0644\u064A\u0647 \u0648\u0633\u0644\u0645",
-    born: "ToBeAdded",
-    passedAway: "ToBeAdded",
-    biography: "ToBeAdded"
+
+    name: "Hadhrat Sarwar-e-Aalam Muhammad RasoolAllah ﷺ",
+
+    born: "Monday 12th Rabi' al-Awwal 571 AD",
+
+    passedAway: null,
+
+    biography: `The blessed birth of Allah’s Messenger ﷺ took place on Monday, 12th Rabi-ul-Awwal (according to some traditions, 9th Rabi-ul-Awwal), in 571 AD, the year of the Elephant. He was born in Makkah to Hadhrat Abdullah and Hadhrat Aminah, and his birth marked the arrival of the beloved Messenger of Allah Ta’ala and the leader of both worlds.
+
+For the first few days, Allah’s Messenger ﷺ was fed by his blessed mother, after which he was nursed by Thuwaybah and then by Haleemah Sa’diyah RadhiAllahu Anha. It was the custom of the noble families of Quraysh to send their children to the countryside for a short period, and Haleemah Sa’diyah RadhiAllahu Anha was honoured with caring for the young Muhammad ﷺ. Her household was greatly blessed after his arrival.
+
+At around two years of age, a remarkable incident took place when two angels came to Allah’s Messenger ﷺ, opened his blessed chest and washed his heart. At the age of six, his beloved mother passed away, and he was then cared for by his grandfather Abdul Muttalib. Two years later, his grandfather also passed away, and his uncle Abu Taalib took responsibility for him.
+
+As Allah’s Messenger ﷺ grew older, his noble character became increasingly known. By the age of twenty-five, the people of Makkah called him Al-Ameen, meaning “the trustworthy”. Hadhrat Khadeejah-tul-Kubraa RadhiAllahu Anha heard of his honesty and employed him to take a caravan to Syria. After witnessing his exceptional character, she proposed marriage to him, and Allah’s Messenger ﷺ accepted.
+
+At the age of forty, Allah’s Messenger ﷺ began experiencing true and beautiful dreams and would often spend time in the Cave of Hira. Then Hadhrat Jibreel Alayhis Salaam came with the first revelation and commanded him, “Read!” This marked the beginning of Wahi and his mission as the final Messenger of Allah Ta’ala.
+
+Hadhrat Khadeejah RadhiAllahu Anha comforted Allah’s Messenger ﷺ when he returned home, reassuring him that Allah Ta’ala would never abandon a person of such noble character. In the early days, he ﷺ invited people to Islam privately. Hadhrat Khadeejah RadhiAllahu Anha was the first woman to accept Islam, while Hadhrat Abu Bakr Siddique RadhiAllahu Anhu was the first adult male. Hadhrat Ali RadhiAllahu Anhu was the first male child to accept Islam.
+
+After three years, Allah Ta’ala commanded His Messenger ﷺ to openly invite people towards Islam. The Quraysh responded with increasing hostility, mocking and harming Allah’s Messenger ﷺ and persecuting the early Muslims. Despite the suffering, he ﷺ remained patient and continued calling people towards Islam.
+
+As the persecution increased, some Muslims migrated to Abyssinia. Later, the Muslims were subjected to a three-year boycott. Ten years after the first revelation, Allah’s Messenger ﷺ suffered the loss of his beloved wife Hadhrat Khadeejah RadhiAllahu Anha and his uncle Abu Taalib. Due to the immense sadness caused by their deaths, that year became known as Aam-ul-Huzn, the Year of Sadness.
+
+Allah’s Messenger ﷺ then travelled to Taif with Hadhrat Zayd bin Haarith RadhiAllahu Anhu to invite its people towards Islam. They rejected his message and treated him harshly, but he ﷺ continued to show patience.
+
+Around this time came the miraculous journey of Mi’raaj. Allah’s Messenger ﷺ was taken from Makkah to Masjid Al-Aqsa on Buraaq, where he led the Prophets Alayhimus Salaam in Salaah. He was then taken through the heavens and granted an extraordinary station of nearness to Allah Ta’ala. During this journey, the five daily prayers were made obligatory upon the Ummah.
+
+When the people of Makkah mocked Allah’s Messenger ﷺ after hearing about Mi’raaj, Hadhrat Abu Bakr Siddique RadhiAllahu Anhu immediately believed him without hesitation. From this, he became known as As-Siddique.
+
+Allah’s Messenger ﷺ continued inviting the tribes of Arabia towards Islam, and eventually people from Yathrib, later known as Madeenah, accepted Islam and pledged to support him ﷺ. The Muslims were instructed to migrate, and eventually Allah’s Messenger ﷺ also made Hijrah with Hadhrat Abu Bakr Siddique RadhiAllahu Anhu.
+
+The Quraysh had planned to kill Allah’s Messenger ﷺ, but Allah Ta’ala protected him. He ﷺ and Hadhrat Abu Bakr RadhiAllahu Anhu took refuge in the Cave of Thawr for three days. When Hadhrat Abu Bakr RadhiAllahu Anhu became concerned for their safety, Allah’s Messenger ﷺ reassured him: “Laa tahzan, innallaha ma’anaa” — “Do not fear; indeed Allah is with us.”
+
+They eventually reached Madeenah, where Allah’s Messenger ﷺ was welcomed with immense happiness. He ﷺ stayed initially at Quba and then entered Madeenah, where Masjid-un-Nabawi was established and the Muslim community began to flourish.
+
+In the second year after Hijrah, the Qiblah was changed towards the Ka’bah, fasting in Ramadhaan became obligatory, and permission for Jihad was given. The Muslims subsequently faced several major battles, including Badr, Uhud, Khandaq, Khaybar, the conquest of Makkah and Hunayn. Islam continued to spread throughout Arabia.
+
+In the tenth year after Hijrah, Allah’s Messenger ﷺ performed his Farewell Hajj. During his Khutbahs, he emphasised the rights of Muslims, the protection of their lives and wealth, the rights of women, and holding firmly to the Book of Allah Ta’ala. On the Day of Arafah, Allah Ta’ala revealed that the Deen had been perfected and His favour upon the believers had been completed.
+
+During his final illness, Allah’s Messenger ﷺ suffered from severe fever and weakness. When he was unable to lead the Salaah himself, he instructed Hadhrat Abu Bakr Siddique RadhiAllahu Anhu to lead the Muslims.
+
+Eventually, on Monday, 12th Rabi-ul-Awwal, Allah’s Messenger ﷺ passed away from this world, with his blessed head resting in the lap of Hadhrat A’ishah Siddiqah RadhiAllahu Anha.
+
+The passing of Allah’s Messenger ﷺ was the greatest loss suffered by the Ummah. His mission, however, had been completed, the Deen had been conveyed, and his Companions RadhiAllahu Anhum carried his message forward and spread Islam throughout the world.
+
+Inna lillahi wa inna ilayhi raaji’oon.`
   };
 
-  // Prophet card (starting point) - clickable
+  /* ============================================================
+     PROPHET CARD
+  ============================================================ */
+
   const prophetCard = document.createElement('div');
+
   prophetCard.className = 'card card-prophet';
-  prophetCard.innerHTML = '<div class="name">' + prophet.name + '</div>';
+
+  prophetCard.innerHTML =
+    '<div class="name">' + prophet.name + '</div>';
+
   prophetCard.addEventListener('click', () => openModal(prophet));
+
   chain.appendChild(prophetCard);
 
-  shaykhs.forEach((s, index) => {
-    // connector line
+
+  /* ============================================================
+     SHAYKH CARDS
+  ============================================================ */
+
+  shaykhs.forEach((s) => {
+
     const connector = document.createElement('div');
+
     connector.className = 'connector';
+
     chain.appendChild(connector);
 
+
     const card = document.createElement('div');
+
     const isLast = s.number === 38;
-    card.className = 'card ' + (isLast ? 'card-final' : 'card-shaykh');
-    card.innerHTML = '<div class="name">' + s.name + '</div>';
+
+    card.className =
+      'card ' + (isLast ? 'card-final' : 'card-shaykh');
+
+    card.innerHTML =
+      '<div class="name">' + s.name + '</div>';
 
     card.addEventListener('click', () => openModal(s));
+
     chain.appendChild(card);
+
   });
 
-  // Modal logic
+
+  /* ============================================================
+     MODAL LOGIC
+  ============================================================ */
+
   const overlay = document.getElementById('overlay');
-  const modalNumber = document.getElementById('modalNumber');
-  const modalName = document.getElementById('modalName');
-  const modalBorn = document.getElementById('modalBorn');
-  const modalPassed = document.getElementById('modalPassed');
-  const modalBio = document.getElementById('modalBio');
-  const closeBtn = document.getElementById('closeBtn');
+
+  const modalNumber =
+    document.getElementById('modalNumber');
+
+  const modalName =
+    document.getElementById('modalName');
+
+  const modalBorn =
+    document.getElementById('modalBorn');
+
+  const modalPassed =
+    document.getElementById('modalPassed');
+
+  const modalBio =
+    document.getElementById('modalBio');
+
+  const closeBtn =
+    document.getElementById('closeBtn');
+
 
   function openModal(s) {
+
     if (s.number === null || s.number === undefined) {
+
       modalNumber.textContent = '';
+
       modalNumber.style.display = 'none';
+
     } else {
-      modalNumber.textContent = 'Shaykh #' + s.number;
+
+      modalNumber.textContent =
+        'Shaykh #' + s.number;
+
       modalNumber.style.display = 'block';
     }
 
+
     modalName.textContent = s.name;
-    modalBorn.textContent = 'Born: ' + s.born;
-    modalPassed.textContent = 'Passed Away: ' + s.passedAway;
+
+
+    /* Blessed Birth */
+
+    if (s.born) {
+
+      modalBorn.textContent =
+        'Blessed Birth: ' + s.born;
+
+      modalBorn.style.display = 'block';
+
+    } else {
+
+      modalBorn.style.display = 'none';
+
+    }
+
+
+    /* Passed Away */
+
+    if (s.passedAway) {
+
+      modalPassed.textContent =
+        'Passed Away: ' + s.passedAway;
+
+      modalPassed.style.display = 'block';
+
+    } else {
+
+      modalPassed.textContent = '';
+
+      modalPassed.style.display = 'none';
+
+    }
+
+
     modalBio.textContent = s.biography;
+
     overlay.classList.add('active');
   }
 
+
   function closeModal() {
+
     overlay.classList.remove('active');
+
   }
 
-  closeBtn.addEventListener('click', closeModal);
 
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) closeModal();
-  });
+  closeBtn.addEventListener(
+    'click',
+    closeModal
+  );
+
+
+  overlay.addEventListener(
+    'click',
+    (e) => {
+
+      if (e.target === overlay) {
+        closeModal();
+      }
+
+    }
+  );
+
 </script>
 
 </body>
